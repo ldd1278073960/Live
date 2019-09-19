@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
+<mapper namespace="com.dp.live.mapper.UserMapper">
+    <!--用户注册-->
+    <insert id="register">
+      insert into user(user_name, user_password, user_phone)
+                  VALUES (#{user.userName},#{user.userPassword},#{user.userPhone})
+    </insert>
 
+    <resultMap id="userLogin" type="com.dp.live.domain.entity.User">
+        <result property="userName" column="user_name"/>
+    </resultMap>
+
+    <!-- 用户登陆 -->
+    <select id="login" resultMap="userLogin">
+        select u.user_name,u.user_id
+            from user u
+        where user_status = 0 and u.user_name=#{user.userName} and u.user_password = #{user.userPassword}
+    </select>
+
+    <!-- 修改密码 -->
+    <update id="updatePassword">
+        update user u
+        set u.user_password = #{userPassword}
+        where u.user_name=#{userName}
+    </update>
 </mapper>
