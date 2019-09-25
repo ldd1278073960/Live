@@ -3,6 +3,7 @@ package com.dp.live.controller;
 import com.dp.live.service.UploadService;
 import com.dp.live.utils.Result;
 import com.dp.live.utils.UploadUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,10 +17,11 @@ import java.io.IOException;
  * @author Administrator
  */
 @RestController
+@Slf4j
 public class UploadController {
 
     @Resource
-    UploadService uploadService;
+    private UploadService uploadService;
 
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public Result uploadSingFile(@RequestParam("img")MultipartFile multipartFile){
@@ -28,7 +30,7 @@ public class UploadController {
             String upload = uploadService.upload(saveImage);
             return Result.success(upload);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return Result.error();
         }
 
