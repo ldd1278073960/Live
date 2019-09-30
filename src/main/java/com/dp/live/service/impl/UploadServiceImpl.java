@@ -12,12 +12,12 @@ import javax.annotation.Resource;
 public class UploadServiceImpl implements UploadService {
 
     @Resource
-    UploadMapper uploadMapper;
+    private UploadMapper uploadMapper;
 
 
     @Override
     public String upload(String multipartFile) {
-        String upload = uploadMapper.upload(multipartFile);
-        return upload;
+
+        return uploadMapper.upload(multipartFile);
     }
 }

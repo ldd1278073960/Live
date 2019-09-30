@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 
 /**
  * @author Administrator
+ *
+ * 文件上传工具类
  */
 public class UploadUtils {
     public static final String SAVE_IMG_FILE = "images";
